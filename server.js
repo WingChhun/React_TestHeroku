@@ -7,10 +7,6 @@ const dev = (process.env.NODE_ENV === 'production');
 
 //*Routes
 
-app.get("/", (req, res) => {
-    res.json({msg: "This is root route test"});
-});
-
 if (dev) {
     //*If in production mode (HEROKU)
     app.use(express.static(path.resolve(__dirname, 'client/build')));
@@ -20,6 +16,10 @@ if (dev) {
 
     });
 } //! End
+
+app.get("/", (req, res) => {
+    res.json({msg: "This is root route test"});
+});
 
 //* Serve static assets for heroku *Start Port display
 app.listen(PORT, () => {
